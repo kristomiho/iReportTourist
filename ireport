@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<style>
+
+
+#index > .ui-panel-wrapper{
+	background-color:#75A2B9;
+	background-image:url('ikona/16839399_1195690900550574_609962900_n.png');
+	background-size:auto;
+	background-repeat:no-repeat;
+	background-position:inherit;
+	width:auto;
+	height:auto;
+	z-index:auto;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-size:100% 100%;
+}
+th {
+    border: 1px solid #d6d6d6;
+}
+.ui-responsive {
+    background-color: lightgray;
+    border: 3px solid black;
+    height: 100%;
+	width:100%;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px;
+}
+
+.pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+.ui-footer {
+    position: absolute !important;
+    bottom: 0;
+	border-bottom:0px;
+    width: 100%;
+}
+
+#buton1 {
+	transform: translate(0%, -50%);
+    margin-top: 40%;
+	border-radius:12px;
+	background-color:#D57386;
+	background-repeat:no-repeat;
+	background-size:20% 100%;
+	padding:inherit;
+	animation-name: buton1animation;
+    animation-duration: 0.8s;
+
+}
+#buton1:active{
+	background-color:#FF0000;
+	}
+#buton2:active{
+	background-color:#FF0000;
+	}
+#buton5{
+	animation-name:buton5animation
+	}
+
+@keyframes buton5animation {
+
+    0% {background-size: 15%; opacity: 0.2;}
+    100% {background-size: 90%; opacity: 1;}
+
+}
+@keyframes buton1animation {
+    0% {width: 15%; opacity: 0.2;}
+    100% {width: 90%; opacity: 1;}
+
+}
+#buton2 {
+	border-radius:9px;
+	background-color:#D57386;
+	background-repeat:no-repeat;
+	background-size:20% 100%;
+	padding:inherit;
+	animation-name: buton2animation;
+    animation-duration: 0.8s;
+
+}
+@keyframes buton2animation {
+    0% {width: 15%; opacity: 0.2;}
+    100% {width: 90%; opacity: 1;}
+}
+#buton5 {
+    width: 90px !important;
+    height: 90px !important;
+    border-radius: 50% !important;
+	margin-left:70%;
+	padding: 4px 3px 0 3px;
+    text-align: center;
+	display: inherit;
+	vertical-align:bottom;
+	animation-name:buton5animation;
+	animation-duration:0.8s;
+}
+
+@keyframes buton5animation {
+    0% {width: 10px; height:10px;}
+    90% {width: 100px; height:100px;}
+	100% {width: 100px; height:100px;}
+	}
+
+#buton3 {
+	margin-top:1px;
+	border-radius:22px;
+	background-color:#e16b58;
+	background-repeat:no-repeat;
+}
+#buton4 {
+	border-radius:12px;
+	background-color:red;
+	color:#ffffff;
+}
+#myPanel {
+	width:15em;
+	}
+#firstpageheader {
+	background-color:#436274;
+	color:#FFFFFF;
+	font-size:20px;
+	}
+#firstpagefooter  {
+	background-color:#436274;
+	color:#FFFFFF;
+	font-size:20px;
+	}
+
+#bar1header {
+}
+</style>
+</head>
+
+<style type="text/css">
+
+#myMap {
+width:100%;
+position: inherit!important;
+overflow: visible!important;
+}
+#map {
+    position: inherit!important;
+    overflow: hidden;
+}
+#report {
+width:100%;
+position: inherit!important;
+overflow: visible!important;
+}
+#reportMap {
+    position: inherit!important;
+    overflow: hidden;
+}
+</style>
+<style type="text/css">
+body {
+  font: .750em/1.2;
+  background: #ce3a1c;
+  background: linear-gradient(left, #f2f2f2, #dddddd);
+  background: -moz-linear-gradient(left, #f2f2f2, #dddddd);
+  background: -webkit-linear-gradient(left, #f2f2f2, #dddddd);
+  background: -o-linear-gradient(left, #f2f2f2, #dddddd);
+}
+
+a:focus { outline: none; }
+
+h3 { text-shadow: 0 2px #ccc; }
+
+.tc { text-align: center; }
+
+
+#navs {
+
+  width: 40%;
+  height: 30%;
+  position: fixed;
+  left: 40%;
+  top: 80%;
+  line-height: 40px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+
+}
+
+#navs>li,
+#navs:after {
+  position: absolute;
+  width: 40%;
+  height: 30%;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  background-color:#1B98E2;
+}
+#bar1style {
+	background-image:url(ikona/policestation.png);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+
+	}
+
+#bar2style {
+	background-image:url(ikona/emergencybutton.png);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+}
+#bar3style {
+	background-image:url(ikona/gasstation.png);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+}
+#bar4style {
+	background-image:url(ikona/mobileservices.png);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+}
+#bar5style {
+	background-image:url(ikona/exchange.png);
+	background-repeat:no-repeat;
+	background-size:100% 100%;
+}
+#navs>li {
+  transition: all .2s;
+  -webkit-transition: all .2s;
+  -moz-transition: .2s;
+}
+
+#navs:after {
+  background-image:url(ikona/utilities.png);
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  content: attr(data-close);
+  z-index: 1;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+}
+
+#navs.active:after { content: attr(data-open); }
+
+#navs a {
+  width: 4%;
+  height: 4%;
+  display: inline-block;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.8em;
+}
+</style>
+<body>
+<div data-role="page" id="index">
+<div data-role="panel" id="myPanel11" style="background-color:#C0F1EF; color:#ffffff;" >
+<h1>Please Login !</h1>
+<div class="ui-field" style="color:Red; font-size:16px;">
+<label for="fullname" style="font-size:20px;">E-mail :</label>
+<input type="text" name="fullname" id="fullname" placeholder="Your email..">
+<label for="email" style="font-size:22px">Password :</label>
+<input type="email" name="email" id="email" placeholder="Your password..">
+</div>
+<input type="submit" data-inline="true" id="buton4" value="Log in">
+</form>
+</div>
+<div data-role="header" id="firstpageheader" >
+    <h1>iReport</h1>
+	<a href="#myPanel11" id="buton3" class="ui-btn ui-btn-inline" style="color:#ffffff;">Log In</a>
+</div>
+  <div data-role="main" class="ui-content">
+     <a class="ui-btn" id="buton1" href="#report" style="color:#EEEEEE; font-size:36px; background-image:url(ikona/reportbutton.png);">Report</a>
+  	 <a class="ui-btn" id="buton2" href="#myMap" style="color:#EEEEEE; font-size:36px; background-image:url(ikona/iWillTravelButton.png);">Travel Plan</a>
+  </div>
+  <div data-role="footer"data-theme="b" id="firstpagefooter">
+  <h5>© Metropolitan Incubator 2017</h5>
+</div>
+</div>
+
+<div data-role="page" id="alert" data-dialog="true">
+  <div data-role="main" class="ui-content" style="background-color:#7badfc; color:#ffffff;">
+  <h1>Would you like to send this information?</h1>
+    <a href="#" class="ui-btn ui-btn-inline uibtn-b ui-shadow ui-corner-all ui-icon-check ui-btn-icon-left ui-btn-inline ui-mini" style="background-color:#4df704; color:#ffffff;" data-rel="back">Send</a>
+    <a href="#" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-inline ui-mini" style="background-color:#e81809; color:#ffffff;" data-rel="back">Cancel</a>
+  </div>
+</div>
+
+<div data-role="page" id="report" style="width:100%; height:100%; ">
+<div data-role="panel" id="reportpanel" style="background-color:#75A2B9; color:#FFFFFF;">
+    <h2>REPORT A PROBLEM AHEAD</h2>
+ <ul data-role="listview" data-inset="true">
+      <li data-role="divider" style="background-color:#57EAE2; color:#000000; font-size:18px; position: center;"><h1>What's wrong ?! </h1></li>
+      <li>
+        <a href="#alert" style="background-color:#57EAE2;; font-size:14px;">
+        <img src="ikona/slippery road.png">
+        <h2>Slippery Road!</h2>
+        </a>
+      </li>
+      <li>
+        <a href="#alert" style="background-color:#57EAE2; font-size:14px;">
+        <img src="ikona/falling rocks.png">
+        <h1>Falling Rocks !</h1>
+        </a>
+      </li>
+      <li>
+        <a href="#alert" style="background-color:#57EAE2; font-size:14px;"data-transition="pop">
+        <img src="ikona/bumpy road.png">
+        <h1>Bumpy Road !</h1>
+        </a>
+      </li>
+      <li>
+        <a href="#alert" style="background-color:#57EAE2; font-size:14px;">
+        <img src="ikona/police station.png">
+        <h1>Police Station!</h1>
+        </a>
+      </li>
+	  <li>
+        <a href="#alert" style="background-color:#57EAE2; font-size:14px;">
+        <img src="ikona/work on road.png">
+        <h1>Road Work!</h1>
+        </a>
+      </li>
+	 <li>
+        <a href="#alert" style="background-color:#57EAE2; font-size:14px;">
+        <img src="ikona/slope road.png">
+        <h1>Slope Road!</h1>
+        </a>
+     </li>
+    </ul>
+  </div>
+
+  <div data-role="main" class="ui-content" style="width:100%; height:100%; padding:0;">
+  <div id="reportMap" style="width:100%;height:100%;"></div>
+  <div data-role="header" data-theme="b" style="background-color:#436274; color:#ffffff;">
+    <h1>iReport</h1>
+	<a href="#reportpanel" class="ui-btn ui-btn-inline" style="background:#D57386; color:#ffffff; border-radius:12px;">Report</a>
+	<a href="#index" class="ui-btn ui-btn-right" style="background:#D57386; color:#ffffff; border-radius:12px;">Back</a>
+	</div>
+  </div>
+   <div data-role="footer" data-theme="b" style="background-color:#436274; color:#ffffff;">
+  <h5>� Metropolitan Incubator 2017</h5>
+</div>
+</div>
+
+<div data-role="page" id="bar1page">
+	<div data-role="header" id="bar1header">
+	</div>
+</div>
+
+
+<div data-role="page" id="myMap" >
+	<div data-role="panel" id="mypanel" style=" position:center; background-color:#75A2B9; width:100%; color:#ffffff; font-size:12px;" >
+		<h1>Please Enter <br>
+		your Itenerary!</h1>
+		<input id="pac-input" type="text" style="width:auto;"
+		placeholder="Enter or pick your location">
+		<input id="pac-output" type="text" style="width: auto;" placeholder="Enter or pick your destination">
+		<input type="submit" id="submitdirections" data-inline="true" value="Show" style="background-color:red; color:#ffffff;">
+	</div>
+  <div data-role="main" class="ui-content" style="width:100%; height:100%; padding:0;" id="map1">
+    <div id="map" style="width:100%; height:100%;"></div>
+	<div data-role="header"data-theme="b" style="background-color:#436274; color:#ffffff;">
+    <h1>iReport</h1>
+	<a href="#mypanel" class="ui-btn ui-btn-inline" data-theme="c" style="background-color:#D57386; color:#ffffff; border-radius:12px;">Itenerary</a>
+	<a href="#index" class="ui-btn ui-btn-right" data-theme="c" style="background-color:#D57386; color:#ffffff;border-radius:12px;">Back</a>
+	</div>
+  </div>
+    <div data-role="footer"data-theme="b" style="background-color:#436274; color:#ffffff;">
+  <h5>© Metropolitan Incubator 2017</h5>
+</div>
+</div>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlawcc3XGADLRKuGcIagh3Hj3lV0m5OKE&libraries=places"
+            async defer></script>
+<script type="text/javascript">
+		// When map page opens get location and display map
+		$('#myMap').on("pagecreate", function() {
+			if(navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position){
+					initialize(position.coords.latitude,position.coords.longitude);
+				});
+			}
+		});
+
+		function initialize(lat,lng) {
+			var latlng = new google.maps.LatLng(lat, lng);
+			var myOptions = {
+				zoom: 8,
+				center: latlng,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
+		    var map = new google.maps.Map(document.getElementById("map"),myOptions);
+			var marker = new google.maps.Marker({
+			  position: latlng,
+			  map: map,
+			  title: 'Hello World!'
+			});
+			 google.maps.event.addListener(map, "idle", function()
+				{
+					google.maps.event.trigger(map, 'resize');
+				});
+
+			 var input = document.getElementById('pac-input');
+			 var input1 = document.getElementById('pac-output');
+	var autocomplete = new google.maps.places.Autocomplete(input);
+		  var autocomplete1 = new google.maps.places.Autocomplete(input1);
+	      autocomplete.addListener('place_changed', function() {
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+            map.setZoom(10);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+
+        });
+		autocomplete1.addListener('place_changed', function() {
+          marker.setVisible(false);
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+
+          // If the place has a geometry, then present it on a map.
+          if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+            map.setZoom(10);
+          } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);  // Why 17? Because it looks good.
+          }
+          marker.setPosition(place.geometry.location);
+          marker.setVisible(true);
+
+        });
+		}
+		$('#report').on("pagecreate", function() {
+			if(navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(function(position){
+					initialize1(position.coords.latitude,position.coords.longitude);
+				});
+			}
+		});
+
+		function initialize1(lat,lng) {
+			var latlng1 = new google.maps.LatLng(lat, lng);
+			var myOptions = {
+				zoom: 8,
+				center: latlng1,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+		    };
+		    var map1 = new google.maps.Map(document.getElementById("reportMap"),myOptions);
+			var marker = new google.maps.Marker({
+			  position: latlng1,
+			  map: map1,
+			  title: 'Hello World!'
+			});
+			 google.maps.event.addListener(map1, "idle", function()
+				{
+					google.maps.event.trigger(map1, 'resize');
+				});
+
+		}
+
+	</script>
+	</script>
+<script>
+      function initMap() {
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 6,
+          center: latlng
+        });
+        directionsDisplay.setMap(map);
+
+        document.getElementById('submitdirections').addEventListener('click', function() {
+          calculateAndDisplayRoute(directionsService, directionsDisplay);
+        });
+      }
+        directionsService.route({
+          origin: document.getElementById('pac-input').value,
+          destination: document.getElementById('pac-output').value,
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+            var route = response.routes[0];
+            var summaryPanel = document.getElementById('mypanel');
+            summaryPanel.innerHTML = '';
+            // For each route, display summary information.
+            for (var i = 0; i < route.legs.length; i++) {
+              var routeSegment = i + 1;
+              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                  '</b><br>';
+              summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+              summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+              summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+            }
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+	
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+<ul id="navs" data-open="-" data-close="+" style="color:#0210B5; font:'Times New Roman', Times, serif; font-size:13px;" >
+  <li id="bar1style"><a href="" style="color:#0210B5; width:100%; height:100%; font-weight:bold"></a></li>
+  <li id="bar2style"><a href="" style="color:#0210B5; width:100%; height:100%; font-weight:bold"></a></li>
+  <li id="bar3style"><a href="" style="color:#0210B5; width:100%; height:100%; font-weight:bold"></a></li>
+  <li id="bar4style"><a href="" style="color:#0210B5; width:100%; height:100%; font-weight:bold"></a></li>
+  <li id="bar5style"><a href="" style="color:#0210B5; width:100%; height:100%; font-weight:bold"></a></li>
+
+</ul>
+
+<div data-role="page" id="bar1page" class="ui-content" style="width:100%; height:100%;"</div>
+	<div data-role="header" id="bar1header" data-theme="b"</div>
+	<div data-role="main" id="bar1main"
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+(function(){
+	var ul=$("#navs"),li=$("#navs li"),i=li.length,n=i-1,r=130;
+	ul.click(function(){
+		$(this).toggleClass('active');
+		if($(this).hasClass('active')){
+			for(var a=0;a<i;a++){
+				li.eq(a).css({
+					'transition-delay':""+(100*a)+"ms",
+					'-webkit-transition-delay':""+(60*a)+"ms",
+					'left':(r*Math.cos(-10/n*a*(Math.PI/10))),
+					'top':(-r*Math.sin(12/n*a*(Math.PI/12)))
+				});
+			}
+		}else{
+			li.removeAttr('style');
+		}
+	});
+})($);
+</script>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>
